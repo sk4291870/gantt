@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gantt Chart</title>
-    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
+      <!-- Raw data -->
        <div class="row">
            <div class="col-md-2 mr-auto">
                     <form onsubmit="return false;" action="" method="post" id="myForm">
@@ -86,13 +86,16 @@
               <li class="chart-li" style="background-color:#d8cece;">x</li>
             </ul>
           </div>
+          {% for data in data %}
         <div class="chart-row">
-          <div class="chart-row-item">1</div>
+          <div class="chart-row-item">{{data}}</div>
           <ul class="chart-row-bars">
-            <li class="chart-li-one">T1</li>
+            <li class="chart-li-one">{{ task }}</li>
           </ul>
         </div>
-        <div class="chart-row">
+      {% endfor %}
+      </div>
+        <!-- <div class="chart-row">
           <div class="chart-row-item">2</div>
           <ul class="chart-row-bars">
             <li class="chart-li-two-a">T2</li>
@@ -129,7 +132,7 @@
             <li class="chart-li-seven">ST3</li>
           </ul>
         </div>
-      </div>
+      </div> -->
       <button type="button" class="btn btn-secondary btn-sm"><</button>
       <button type="button" class="btn btn-secondary btn-sm">></button>
       <form action="" method="post">
@@ -260,18 +263,18 @@
                 </div>
             </div>
         </div>
-        
-        
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
-    var selectedOptionText = $('#year').find(":selected").text();
-    //selected option text
+    var selectedOptionText = $('#year').find(":selected").text();//selected option text
     // var selectedOptionVal = $('#year').find(":selected").val();
     console.log(selectedOptionText);
+    $('#myForm').submit(function() {
+        alert("Getting...");
+    });
     $("#checkAll").click(function(){
         $('input:checkbox').prop('checked', true);
         $('#oswin').prop('checked', false);
