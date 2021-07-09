@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gantt Chart</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+       <div class="row">
+           <div class="col-md-2 mr-auto">
+                    <form onsubmit="return false;" action="" method="post" id="myForm">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select Year</label>
+                            <select name="year" class="form-control" id="exampleFormControlSelect1">
+                                <option>2021</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+                          </div>
+                      </form>
+                </div>
+       </div>
+&nbsp;
+        <table class="table" style="background-color: red;">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th><th scope="col"></th><th scope="col"></th>
+                <th scope="col">Result of 2021</th>
+                <th scope="col"></th>
+              </tr>
+                </thead>
+            </table>
+        <div class="chart"> 
+        <div class="chart-row chart-period">
+            <div class="chart-row-item"></div>
+            <span>Jan</span>
+            <span>Feb</span>
+            <span>Mar</span>
+            <span>Apr</span>
+            <span>May</span>
+            <span>Jun</span>
+            <span>Jul</span>
+            <span>Aug</span>
+            <span>Sep</span>
+            <span>Oct</span>
+            <span>Nov</span>
+            <span>Dec</span>
+        </div>
+        <div class="chart-row chart-lines">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+        <div class="chart-row">
+            <div class="chart-row-item">sheet</div>
+            <ul class="chart-row-bars">
+              <li class="chart-li" style="background-color:#d8cece;">x</li>
+              <li class="chart-li" style="background-color:#d8cece;">x</li>
+            </ul>
+          </div>
+        <div class="chart-row">
+          <div class="chart-row-item">1</div>
+          <ul class="chart-row-bars">
+            <li class="chart-li-one">T1</li>
+          </ul>
+        </div>
+        <div class="chart-row">
+          <div class="chart-row-item">2</div>
+          <ul class="chart-row-bars">
+            <li class="chart-li-two-a">T2</li>
+            <li class="chart-li-two-b">ST2</li>          
+          </ul>
+        </div>
+        <div class="chart-row">
+          <div class="chart-row-item">3</div>
+          <ul class="chart-row-bars">
+            <li class="chart-li-three">item</li>
+          </ul>
+        </div>
+        <div class="chart-row">
+          <div class="chart-row-item">4</div>
+          <ul class="chart-row-bars">
+            <li class="chart-li-four">item</li>
+          </ul>
+        </div>
+        <div class="chart-row">
+          <div class="chart-row-item">5</div>
+          <ul class="chart-row-bars">
+            <li class="chart-li-five">ST1</li>
+          </ul>
+        </div>
+        <div class="chart-row">
+          <div class="chart-row-item">6</div>
+          <ul class="chart-row-bars">
+            <li class="chart-li-six">T3</li>
+          </ul>
+        </div>
+        <div class="chart-row">
+          <div class="chart-row-item">7</div>
+          <ul class="chart-row-bars">
+            <li class="chart-li-seven">ST3</li>
+          </ul>
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm"><</button>
+      <button type="button" class="btn btn-secondary btn-sm">></button>
+      <form action="" method="post">
+       <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-check form-check-inline">
+                <label class="form-check-label" for="defaultCheck1">
+    
+                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
+                    T1
+                </label>
+                &nbsp;
+                <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                <label class="form-check-label" for="defaultCheck1">
+                    T2
+                </label>
+                &nbsp;
+                <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                <label class="form-check-label" for="defaultCheck1">
+                    T3
+                </label>
+                  </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
+                        ST1
+                    </label>
+                    <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST2
+                    </label>
+                    
+                    <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST3
+                    </label>
+                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
+                        ST4
+                    </label>
+                    
+                    <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST5
+                    </label>
+                    
+                    <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST6
+                    </label>
+                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
+                        ST7
+                    </label>
+                
+                    <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST8
+                    </label>
+                
+                    <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST9
+                    </label>
+                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
+                        ST10
+                    </label>
+                
+                    <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST11  
+                    </label>
+                    <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST12
+                    </label>
+                  </div>
+        </div>
+        <br>
+       </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="checkAll">Select all</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="clearAll">Clear all</button>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Releases</label>
+                    <select name="releases" multiple class="form-control" id="exampleFormControlSelect2">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="col-md-1">
+                OS
+                <div class="col-md-1">
+                    <label class="form-check-label" for="defaultCheck1">
+                    <input class="form-check-input" type="checkbox" name="os" value="windows" id="oswin"> Windows &nbsp;
+                    </label>
+                  </div>
+                  <div class="col-md-1">
+                    <input class="form-check-input" type="checkbox" name="os" value="linux" id="oslinux">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Linux
+                    </label>
+                  </div>
+            </div>
+            <div class="col-md-2">
+                  <label for="exampleFormControlSelect1">NDA Scope</label>
+                    <select name="nda" class="form-control" id="exampleFormControlSelect1">
+                        <option value="all">All</option>
+                        <option value="nda">NDA</option>
+                        </select>
+
+            </div>
+            <div class="col-md-2">
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">States</label>
+                <select name="states" multiple class="form-control" id="exampleFormControlSelect2">
+                    <option name="Draft">Draft</option>
+                    <option name="Submitted">Submitted</option>
+                    <option name="Approved">Approved</option>
+                    <option name="Sustaining">Sustaining</option>
+                    <option name="Closed">Closed</option>
+                <option name="Rejected">Rejected</option>
+                </select>
+                </div>
+            </div>
+        </div>
+        
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    var selectedOptionText = $('#year').find(":selected").text();//selected option text
+    // var selectedOptionVal = $('#year').find(":selected").val();
+    console.log(selectedOptionText);
+    $('#myForm').submit(function() {
+        alert("Getting...");
+    });
+    $("#checkAll").click(function(){
+        $('input:checkbox').prop('checked', true);
+        $('#oswin').prop('checked', false);
+        $('#oslinux').prop('checked', false);
+        
+
+});
+$("#clearAll").click(function(){
+        $('input:checkbox').prop('checked', false);
+});
+  </script>
+
+</body>
+</html>
