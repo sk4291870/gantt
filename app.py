@@ -32,9 +32,7 @@ def index():
         #     print(row)   
         # return render_template('index.html',task=set(task),subtask=set(subtask))
         return request.form   
-    # Task = cursor.execute("select * from dbo.Table2 where Taskname = 'T1'")
     task = []
-    subtask = []
     release = []
     year = [] 
     # print('=======================( Table 1 )=======================')
@@ -56,11 +54,72 @@ def index():
     for data in table2021:
         # print(data)
         items.append(data[2])
+
+    SubTaskT1 = []
+    SubTaskT2 = []
+    SubTaskT3 = []
+    SubTaskT4 = []
+    SubTaskT5 = []
+    SubTaskT6 = []
+
+    # if task == 'T1':
+    #     SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T1'")
+    #     for subtaskt1 in SubTask:
+    #         SubTaskT1.append(subtaskt1[2])
+    # elif task == 'T2':
+    #     SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T2'")
+    #     for subtaskt1 in SubTask:
+    #         SubTaskT2.append(subtaskt1[2])
+    # elif task == 'T3':
+    #     SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T3'")
+    #     for subtaskt1 in SubTask:
+    #         SubTaskT3.append(subtaskt1[2])
+    # elif task == 'T4':
+    #     SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T4'")
+    #     for subtaskt1 in SubTask:
+    #         SubTaskT4.append(subtaskt1[2])
+    # elif task == 'T5':
+    #     SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T5'")
+    #     for subtaskt1 in SubTask:
+    #         SubTaskT5.append(subtaskt1[2])
+    # elif task == 'T6':
+    #     SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T6'")
+    #     for subtaskt1 in SubTask:
+    #         SubTaskT6.append(subtaskt1[2])
+
+    SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T1'")
+    for subtaskt1 in SubTask:
+        SubTaskT1.append(subtaskt1[2])
+
+    SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T2'")
+    for subtaskt1 in SubTask:
+        SubTaskT2.append(subtaskt1[2])
+
+    SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T3'")
+    for subtaskt1 in SubTask:
+        SubTaskT3.append(subtaskt1[2])
     
+    SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T4'")
+    for subtaskt1 in SubTask:
+        SubTaskT4.append(subtaskt1[2])
+    
+    SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T5'")
+    for subtaskt1 in SubTask:
+        SubTaskT5.append(subtaskt1[2])
+
+    SubTask = cursor.execute("select * from dbo.Table2 where Taskname = 'T6'")
+    for subtaskt1 in SubTask:
+        SubTaskT6.append(subtaskt1[2])
+
     return render_template('index.html',
             task=sorted(set(task)),
             release=sorted(set(release)),
-            subtask=sorted(set(subtask)),
+            subtask1=sorted(set(SubTaskT1)),
+            subtask2=sorted(set(SubTaskT2)),
+            subtask3=sorted(set(SubTaskT3)),
+            subtask4=sorted(set(SubTaskT4)),
+            subtask5=sorted(set(SubTaskT5)),
+            subtask6=sorted(set(SubTaskT6)),
             table1= sorted(set(year), reverse=True),
             items = items 
 
@@ -69,8 +128,19 @@ def index():
 
 @app.route('/abc',methods=['GET','POST'])
 def home():
-    table2021 = cursor.execute("select * from Table1 where ReleaseYear= '2021'")
-    return render_template('base.html',table=table2021)
+    Year = []
+    table2021 = cursor.execute("select * from Table1")
+    for year in table2021:
+        Year.append(year[6])
+    task = []
+    release = []
+    table2 = cursor.execute('SELECT * FROM Test_GanttChart.dbo.Table2') 
+    for row in table2:
+        print(row[1])
+        task.append(row[1])
+        release.append(row[6])
+
+    return render_template('base.html',table=sorted(set(Year), reverse=True),task=sorted(set(task)),release=sorted(set(release)))
 
 
 if __name__ == "__main__":
