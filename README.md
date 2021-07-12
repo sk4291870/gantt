@@ -10,7 +10,6 @@ Status : Progress
 
     ```
         pip install -r requirements.txt
-
     ``` 
   3. Once all packages were install then, set the flask ENV and set APP.
   

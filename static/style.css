@@ -52,8 +52,8 @@
   }
  
   .chart-row-item {
-    background-color:#f10909;
-    border: 1px solid  #000;
+    background-color:#cdddd2;
+    border: 1px solid  rgb(0, 0, 0);
     border-top: 0;
     border-left: 0;      
     padding: 20px 0;
@@ -86,7 +86,7 @@
   }
   ul .chart-li-one {
     grid-column: 1/2; 
-    background-color:#588BAE;
+    background-color:#09f14f;
   }
   ul .chart-li-two-a {
     grid-column: 2/2; 

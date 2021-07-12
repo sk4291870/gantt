@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import pyodbc 
+import json
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -14,23 +15,34 @@ cursor = conn.cursor()
 def index():    
     if request.method == "POST":
         # filter fields
-        # print(request.values)
-        print(request.form.getlist("task"))
-        print(request.form.getlist("releases"))
-        print(request.form.getlist("os"))
-        print(request.form.getlist("states"))
-        
-    cursor.execute('SELECT * FROM Test_GanttChart.dbo.Table1')
-    cursor.execute('SELECT * FROM Test_GanttChart.dbo.Table2')    
-    index = []
+        print(request)
+        # print(request.form.getlist("task"))
+        # print(request.form.getlist("releases"))
+        # print(request.form.getlist("os"))
+        # print(request.form.getlist("states"))
+        # task = 'T1'
+        # Task = cursor.execute(f"select * from dbo.Table2 where Taskname = '{task}'")
+        # task = []
+        # subtask = []
+        # for row in Task:
+        #     # print(row[1])
+        #     task.append(row[1])
+        #     subtask.append(row[2])
+        #     print(row)   
+        # return render_template('index.html',task=set(task),subtask=set(subtask))
+        return request.form
+
+    table1 =  cursor.execute('SELECT * FROM Test_GanttChart.dbo.Table1')
+    table2 = cursor.execute('SELECT * FROM Test_GanttChart.dbo.Table2')    
+    Task = cursor.execute("select * from dbo.Table2 where Taskname = 'T1'")
     task = []
-    for row in cursor:
+    subtask = []
+    for row in Task:
         # print(row[1])
         task.append(row[1])
-        index.append(row[0])
-        print(row[0],row[1],row[2],row[3],row[4],row[5],row[6])
-        
-    return render_template('index.html',data=zip(index,task))
+        subtask.append(row[2])
+        print(row)   
+    return render_template('index.html',task=set(task),subtask=set(subtask))
 
 
 if __name__ == "__main__":

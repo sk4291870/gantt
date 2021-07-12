@@ -81,19 +81,25 @@
         </div>
         <div class="chart-row">
             <div class="chart-row-item">sheet</div>
-            <ul class="chart-row-bars">
+            <ul class="chart-row-bars" style="background-color:#cdddd2;">
               <li class="chart-li" style="background-color:#d8cece;">x</li>
               <li class="chart-li" style="background-color:#d8cece;">x</li>
             </ul>
           </div>
-          {% for data in data %}
+          
         <div class="chart-row">
-          <div class="chart-row-item">{{data}}</div>
+          {%for task in task%}
+          <div class="chart-row-item" style="background-color:#09f14f;">{{ task }}</div>
           <ul class="chart-row-bars">
-            <li class="chart-li-one">{{ task }}</li>
+            {% for sub in subtask %}
+            <li class="chart-li-one" style="background-color:#09f14f;">{{ sub }}</li>
+            {% endfor %}
+            <!-- <li class="chart-li-two" style="background-color:#738679;">ST22</li> -->
+            <li class="chart-li-four" style="background-color:#09f14f;">ST29</li>
+            <li class="chart-li-five" style="background-color:#09f14f;">ST27</li>
           </ul>
         </div>
-      {% endfor %}
+        {% endfor %}
       </div>
         <!-- <div class="chart-row">
           <div class="chart-row-item">2</div>
@@ -140,86 +146,217 @@
         <div class="col-md-8">
             <div class="form-group form-check form-check-inline">
                 <label class="form-check-label" for="defaultCheck1">
-    
-                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
+                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="t1">
                     T1
                 </label>
                 &nbsp;
-                <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
                 <label class="form-check-label" for="defaultCheck1">
-                    T2
-                </label>
-                &nbsp;
-                <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
-                <label class="form-check-label" for="defaultCheck1">
-                    T3
-                </label>
-                  </div>
+                  <input class="form-check-input" type="checkbox" name="task" value="t2" id="t2">
+                  T2
+              </label>
+              &nbsp;
+              <label class="form-check-label" for="defaultCheck1">
+                <input class="form-check-input" type="checkbox" name="task" value="t3" id="t3">
+                T3
+            </label>
+            &nbsp;
+            <label class="form-check-label" for="defaultCheck1">
+              <input class="form-check-input" type="checkbox" name="task" value="t4" id="t4">
+              T4
+          </label>
+          &nbsp;
+          <label class="form-check-label" for="defaultCheck1">
+            <input class="form-check-input" type="checkbox" name="task" value="t5" id="t5">
+            T5
+        </label>
+        &nbsp;
+        <label class="form-check-label" for="defaultCheck1">
+          <input class="form-check-input" type="checkbox" name="task" value="t6" id="t6">
+          T6
+      </label>
+      &nbsp;
             </div>
-            <div class="col-md-5">
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
                 <div class="form-group form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
-                        ST1
+                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                    ST1
                     </label>
-                    <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st2" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck1">
                       ST2
                     </label>
-                    
-                    <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st3" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck1">
                       ST3
                     </label>
-                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
-                        ST4
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st4" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">   
+                    ST4
                     </label>
-                    
-                    <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st5" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck1">
                       ST5
                     </label>
-                    
-                    <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st6" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck1">
                       ST6
                     </label>
-                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st7" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
                         ST7
                     </label>
-                
-                    <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st8" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck1">
                       ST8
                     </label>
-                
-                    <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st9" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck1">
                       ST9
                     </label>
-                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
-                        ST10
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st10" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                   ST10
                     </label>
-                
-                    <input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck2">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st11" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck1">
                       ST11  
                     </label>
-                    <input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck2">
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st12" id="defaultCheck2">
                     <label class="form-check-label" for="defaultCheck1">
                       ST12
                     </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st13" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST13
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st14" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST14
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st15" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST15
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st16" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST16
+                    </label> 
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st17" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST17
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st18" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST18
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st19" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST19
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st20" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST20
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st21" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST21
+                    </label>
+                    &nbsp;
+                    </div>
+                    </div>
+                <div class="col-md-5">
+                  <div class="form-group form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="task" value="st22" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST22
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st23" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST23
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st24" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST24
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st25" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST25
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st26" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST26
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st27" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST27
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st29" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST28
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st30" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST30
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st31" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST31
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="st32" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      ST32
+                    </label>
+                    &nbsp;
+                    <input class="form-check-input" type="checkbox" name="task" value="none" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      None
+                    </label>
+                    &nbsp;
+                      </div>
+                    </div>
                   </div>
-        </div>
-        <br>
-       </div>
+            
         <button type="button" class="btn btn-secondary btn-sm" id="checkAll">Select all</button>
         <button type="button" class="btn btn-secondary btn-sm" id="clearAll">Clear all</button>
         <div class="row">
             <div class="col-md-1">
                 <div class="form-group">
                     <label for="exampleFormControlSelect2">Releases</label>
-                    <select name="releases" multiple class="form-control" id="exampleFormControlSelect2">
-                        <option value="1">1</option>
+                    <select name="releases" multiple class="form-control" id="exampleFormControlSelect2">     
+                      <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -232,7 +369,8 @@
                 <div class="col-md-1">
                     <label class="form-check-label" for="defaultCheck1">
                     <input class="form-check-input" type="checkbox" name="os" value="windows" id="oswin"> Windows &nbsp;
-                    </label>
+          
+                  </label>
                   </div>
                   <div class="col-md-1">
                     <input class="form-check-input" type="checkbox" name="os" value="linux" id="oslinux">
@@ -242,12 +380,11 @@
                   </div>
             </div>
             <div class="col-md-2">
-                  <label for="exampleFormControlSelect1">NDA Scope</label>
-                    <select name="nda" class="form-control" id="exampleFormControlSelect1">
-                        <option value="all">All</option>
-                        <option value="nda">NDA</option>
-                        </select>
-
+                <label for="exampleFormControlSelect1">NDA Scope</label>
+                  <select name="nda" class="form-control" id="exampleFormControlSelect1">
+                      <option value="all">All</option>
+                      <option value="nda">NDA</option>
+                       </select>
             </div>
             <div class="col-md-2">
             <div class="form-group">
@@ -280,10 +417,23 @@
         $('#oswin').prop('checked', false);
         $('#oslinux').prop('checked', false);
       });
+
+      $(":checkbox").change(function(){
+        if(this.checked){
+            $.ajax({
+                type: "POST",
+                url: '',
+                data: $(this).attr('id') +" : "+ $(this).val(), //--> send id of checked checkbox on other page
+                success: function(data) {
+                  console.log(data);  
+                  //todo              
+                }
+              }); 
+            };
+          });
       $("#clearAll").click(function(){
               $('input:checkbox').prop('checked', false);
       });
   </script>
-
 </body>
 </html>
