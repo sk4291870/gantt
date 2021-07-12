@@ -92,7 +92,12 @@
     grid-column: 2/2; 
     background-color: #0080FF;
   }
+  
   ul .chart-li-two-b {
+    grid-column: 2/3; 
+    background-color: #0080FF;
+  }
+  ul .chart-li-two-c {
     grid-column: 2/4; 
     background-color:#0080FF;
   } 

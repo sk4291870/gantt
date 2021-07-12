@@ -17,8 +17,12 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Select Year</label>
                             <select name="year" class="form-control" id="exampleFormControlSelect1">
-                                <option>2021</option>
-                                <option value="2000">2000</option>
+
+                                <!-- <option>2021</option> -->
+                              {% for year in table1%}   
+                              <option value="{{year}}">{{year}}</option>
+                              {% endfor %}
+                                <!-- <option value="2000">2000</option>
                                 <option value="2001">2001</option>
                                 <option value="2002">2002</option>
                                 <option value="2003">2003</option>
@@ -39,7 +43,7 @@
                                 <option value="2018">2018</option>
                                 <option value="2019">2019</option>
                                 <option value="2020">2020</option>
-                                <option value="2021">2021</option>
+                                <option value="2021">2021</option> -->
                             </select>
                           </div>
                       </form>
@@ -82,25 +86,55 @@
         <div class="chart-row">
             <div class="chart-row-item">sheet</div>
             <ul class="chart-row-bars" style="background-color:#cdddd2;">
-              <li class="chart-li" style="background-color:#d8cece;">x</li>
-              <li class="chart-li" style="background-color:#d8cece;">x</li>
+              {% for data in items%}
+              <li class="chart-li" style="background-color:#2c2b2b;">{{data}}</li>
+              <!-- <li class="chart-li" style="background-color:#d8cece;">x</li> -->
+              {% endfor %}
             </ul>
           </div>
+        <!-- <div class="chart-row">
           
-        <div class="chart-row">
-          {%for task in task%}
-          <div class="chart-row-item" style="background-color:#09f14f;">{{ task }}</div>
+          <div class="chart-row-item" style="background-color:#f10909;">{{ task }}</div>
           <ul class="chart-row-bars">
             {% for sub in subtask %}
-            <li class="chart-li-one" style="background-color:#09f14f;">{{ sub }}</li>
+            <li class="chart-li-one" style="background-color:#09f14f;">{{sub}}</li>
             {% endfor %}
-            <!-- <li class="chart-li-two" style="background-color:#738679;">ST22</li> -->
-            <li class="chart-li-four" style="background-color:#09f14f;">ST29</li>
-            <li class="chart-li-five" style="background-color:#09f14f;">ST27</li>
           </ul>
+          
+        </div> -->
+        {%for task in task%}
+        <div class="chart-row">
+          {% if task == 'T1' %}
+          <div class="chart-row-item" style="background-color:#ee4035;" id="task{{ task }}">{{ task }}</div>
+          {% for sub in subtask %}
+            <li class="chart-li-one" style="background-color:#09f14f;" id="task{{ task }}">{{sub}}</li>
+            {% endfor %}
+       {% endif %}    
+       {% if task == 'T2' %}
+         <div class="chart-row-item" style="background-color:#f37736;" id="task{{ task }}">{{ task }}</div>          
+         {% endif %}
+         {% if task == 'T3' %}
+         <div class="chart-row-item" style="background-color:#fdf498 ;" id="task{{ task }}">{{ task }}</div>          
+         {% endif %}
+         {% if task == 'T4' %}
+         <div class="chart-row-item" style="background-color:#0392cf;" id="task{{ task }}">{{ task }}</div>          
+         {% endif %}
+         {% if task == 'T5' %}
+         <div class="chart-row-item" style="background-color:#88d8b0;" id="task{{ task }}">{{ task }}</div>          
+         {% endif %}
+         {% if task == 'T6' %}
+         <div class="chart-row-item" style="background-color:#fed766 ;" id="task{{ task }}">{{ task }}</div>          
+         {% endif %}
         </div>
         {% endfor %}
       </div>
+      <!-- <div class="chart-row">
+        <div class="chart-row-item">2</div>
+        <ul class="chart-row-bars">
+          <li class="chart-li-two-a">T2</li>
+          <li class="chart-li-two-b">ST2</li>          
+        </ul>
+      </div> -->
         <!-- <div class="chart-row">
           <div class="chart-row-item">2</div>
           <ul class="chart-row-bars">
@@ -145,40 +179,28 @@
        <div class="row">
         <div class="col-md-8">
             <div class="form-group form-check form-check-inline">
+              {%for task in task%}
                 <label class="form-check-label" for="defaultCheck1">
-                    <input class="form-check-input" type="checkbox" name="task" value="t1" id="t1">
-                    T1
+                    <input class="form-check-input" type="checkbox" name="task" value="{{ task }}" id="{{ task }}" checked>
+                    {{ task }}
                 </label>
                 &nbsp;
-                <label class="form-check-label" for="defaultCheck1">
-                  <input class="form-check-input" type="checkbox" name="task" value="t2" id="t2">
-                  T2
-              </label>
-              &nbsp;
-              <label class="form-check-label" for="defaultCheck1">
-                <input class="form-check-input" type="checkbox" name="task" value="t3" id="t3">
-                T3
-            </label>
-            &nbsp;
-            <label class="form-check-label" for="defaultCheck1">
-              <input class="form-check-input" type="checkbox" name="task" value="t4" id="t4">
-              T4
-          </label>
-          &nbsp;
-          <label class="form-check-label" for="defaultCheck1">
-            <input class="form-check-input" type="checkbox" name="task" value="t5" id="t5">
-            T5
-        </label>
-        &nbsp;
-        <label class="form-check-label" for="defaultCheck1">
-          <input class="form-check-input" type="checkbox" name="task" value="t6" id="t6">
-          T6
-      </label>
-      &nbsp;
+                {% endfor %}
             </div>
             </div>
             </div>
             <div class="row">
+              <div class="col-md-8">
+                <div class="form-group form-check form-check-inline">
+                  {% for sub in subtask %}
+                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1" checked>
+                    <label class="form-check-label" for="defaultCheck1">
+                    {{ sub }}
+                    </label>
+                    &nbsp;
+                    {% endfor %}
+                    </div>
+                    </div>
               <div class="col-md-8">
                 <div class="form-group form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1">
@@ -352,15 +374,13 @@
         <button type="button" class="btn btn-secondary btn-sm" id="checkAll">Select all</button>
         <button type="button" class="btn btn-secondary btn-sm" id="clearAll">Clear all</button>
         <div class="row">
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="exampleFormControlSelect2">Releases</label>
-                    <select name="releases" multiple class="form-control" id="exampleFormControlSelect2">     
-                      <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <select name="releases" multiple class="form-control" id="exampleFormControlSelect2"> 
+                      {% for val in release %}
+                      <option value="{{val}}" selected>{{ val }}</option>
+                      {% endfor %}    
                     </select>
                   </div>
             </div>
@@ -426,10 +446,20 @@
                 data: $(this).attr('id') +" : "+ $(this).val(), //--> send id of checked checkbox on other page
                 success: function(data) {
                   console.log(data);  
-                  //todo              
+                  //todo
+
                 }
               }); 
             };
+          });
+          $(":checkbox").change(function(){
+            var ID = $(this).attr('id');
+            // hide
+            $('#task'+ID).hide();
+            if(this.checked){
+              // show
+              $('#task'+ID).show(); 
+            }
           });
       $("#clearAll").click(function(){
               $('input:checkbox').prop('checked', false);
