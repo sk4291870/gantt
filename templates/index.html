@@ -25,7 +25,9 @@
 		<div class="container">
 			<div class="gantt"></div>
 		</div>
+
 		<div class="filter">
+			<h2>Filter's</h2>
 			<input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
                     T1
@@ -220,6 +222,13 @@
 		  <br>
 		  <button type="button" class="btn btn-secondary btn-sm" id="checkAll">Select all</button>
         <button type="button" class="btn btn-secondary btn-sm" id="clearAll">Clear all</button>	
+		&nbsp;&nbsp;
+		<label for="nda">NDA/ALL:</label>
+		<select id="nda" name="nda">
+		<option value="">------</option>	
+		<option value="all">ALL</option>
+		<option value="nda">NDA</option>
+		</select>
 	<br><br>  
 	<label for="exampleFormControlSelect2">Release</label>
 	<select name="states" multiple class="form-control" id="exampleFormControlSelect2">
@@ -228,7 +237,18 @@
 		<option name="21.3">21.3</option>
 		<option name="21.5">21.5</option>
 	</select>
-	<label for="exampleFormControlSelect2">States</label>
+	<input class="form-check-input" type="checkbox" name="win" value="" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  Windows
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="linux" value="" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  Linux
+			</label>
+			&nbsp;
+
+	<label for="exampleFormControlSelect2">States : </label>
 	<select name="states" multiple class="form-control" id="exampleFormControlSelect2">
 				<option name="Draft">Draft</option>
 				<option name="Submitted">Submitted</option>
@@ -239,8 +259,6 @@
 	</select>
     <button type="submit" class="btn btn-primary">Submit</button>
 	</div>
-
-	
     </body>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

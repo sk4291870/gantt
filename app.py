@@ -4,8 +4,6 @@ import json
 import pyodbc
 import datetime
 
-
-
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
@@ -24,17 +22,18 @@ def index():
     for row in table2:
         list1.append(row)
         # startdate
-        date_time_obj = datetime.datetime.strptime(row[4], '%Y-%m-%d')
-        sdate = datetime.datetime.timestamp(date_time_obj)
+        # date_time_obj = datetime.datetime.strptime(row[4], '%Y-%m-%d')
+        sdate = datetime.datetime.timestamp(row[4])
         sdatelist.append(round(sdate * 1000 ))
         #enddate
-        date_time_obj = datetime.datetime.strptime(row[5], '%Y-%m-%d')
-        edate = datetime.datetime.timestamp(date_time_obj)
+        # date_time_obj = datetime.datetime.strptime(row[5], '%Y-%m-%d')
+        edate = datetime.datetime.timestamp(row[4])
         edatelist.append(round(edate * 1000))
   
     # print(sdatelist,edatelist)
     # df= pd.read_sql("select * from Table2", conn)
     return render_template('index.html',task=zip(list1,sdatelist,edatelist))
+
 
 if __name__ == "__main__":
     app.run()
