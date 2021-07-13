@@ -1,257 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gantt Chart</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-      <!-- Raw data -->
-       <div class="row">
-           <div class="col-md-2 mr-auto">
-                    <form onsubmit="return false;" action="" method="post" id="myForm">
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Select Year</label>
-                            <select name="year" class="form-control" id="exampleFormControlSelect1">
-
-                                <!-- <option>2021</option> -->
-                              {% for year in table1%}   
-                              <option value="{{year}}">{{year}}</option>
-                              {% endfor %}
-                                <!-- <option value="2000">2000</option>
-                                <option value="2001">2001</option>
-                                <option value="2002">2002</option>
-                                <option value="2003">2003</option>
-                                <option value="2004">2004</option>
-                                <option value="2005">2005</option>
-                                <option value="2006">2006</option>
-                                <option value="2007">2007</option>
-                                <option value="2008">2008</option>
-                                <option value="2009">2009</option>
-                                <option value="2010">2010</option>
-                                <option value="2011">2011</option>
-                                <option value="2012">2012</option>
-                                <option value="2013">2013</option>
-                                <option value="2014">2014</option>
-                                <option value="2015">2015</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option> -->
-                            </select>
-                          </div>
-                      </form>
-                </div>
-       </div>
-&nbsp;
-        <table class="table" style="background-color: red;">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th><th scope="col"></th><th scope="col"></th>
-                <th scope="col">Result of 2021</th>
-                <th scope="col"></th>
-              </tr>
-                </thead>
-            </table>
-        <div class="chart"> 
-        <div class="chart-row chart-period">
-            <div class="chart-row-item"></div>
-            <span>Jan</span>
-            <span>Feb</span>
-            <span>Mar</span>
-            <span>Apr</span>
-            <span>May</span>
-            <span>Jun</span>
-            <span>Jul</span>
-            <span>Aug</span>
-            <span>Sep</span>
-            <span>Oct</span>
-            <span>Nov</span>
-            <span>Dec</span>
-        </div>
-        <div class="chart-row chart-lines">
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-        </div>
-        <div class="chart-row">
-            <div class="chart-row-item">sheet</div>
-            <ul class="chart-row-bars" style="background-color:#cdddd2;">
-              {% for data in items%}
-              <li class="chart-li" style="background-color:#2c2b2b;">{{data}}</li>
-              <!-- <li class="chart-li" style="background-color:#d8cece;">x</li> -->
-              {% endfor %}
-            </ul>
-          </div>
-        <!-- <div class="chart-row">
-          
-          <div class="chart-row-item" style="background-color:#f10909;">{{ task }}</div>
-          <ul class="chart-row-bars">
-            {% for sub in subtask %}
-            <li class="chart-li-one" style="background-color:#09f14f;">{{sub}}</li>
-            {% endfor %}
-          </ul>
-          
-        </div> -->
-        {%for task in task%}
-        <div class="chart-row">
-          {% if task == 'T1' %}
-          <div class="chart-row-item" style="background-color:#ee4035;" id="task{{ task }}">{{ task }}</div>
-          {% for sub in subtask1 %}
-            <li class="chart-li-one" style="background-color:#ee4035;" id="task{{ task }}">{{sub}}</li>
-            {% endfor %}
-       {% endif %}    
-       {% if task == 'T2' %}
-         <div class="chart-row-item" style="background-color:#f37736;" id="task{{ task }}">{{ task }}</div> 
-        {% for sub in subtask2 %}
-        <li class="chart-li-two-a" style="background-color:#f37736;" id="task{{ task }}">{{sub}}</li>
-        {% endfor %}    
-         {% endif %}
-         {% if task == 'T3' %}
-         <div class="chart-row-item" style="background-color:#fdf498 ;" id="task{{ task }}">{{ task }}</div> 
-         {% for sub in subtask3 %}
-         <li class="chart-li-two-a" style="background-color:#fdf498;" id="task{{ task }}">{{sub}}</li>
-         {% endfor %}        
-         {% endif %}  
-         {% if task == 'T4' %}
-         <div class="chart-row-item" style="background-color:#0392cf;" id="task{{ task }}">{{ task }}</div>    
-         {% for sub in subtask4 %}
-         <li class="chart-li-two-a" style="background-color:#0392cf;" id="task{{ task }}">{{sub}}</li>
-         {% endfor %}       
-         {% endif %}
-         {% if task == 'T5' %}
-         <div class="chart-row-item" style="background-color:#88d8b0;" id="task{{ task }}">{{ task }}</div> 
-         {% for sub in subtask5 %}
-         <li class="chart-li-two-a" style="background-color:#88d8b0;" id="task{{ task }}">{{sub}}</li>
-         {% endfor %}          
-         {% endif %}
-         {% if task == 'T6' %}
-         <div class="chart-row-item" style="background-color:#fed766 ;" id="task{{ task }}">{{ task }}</div>          
-         {% endif %}
-        </div>
-        {% endfor %}
-      </div>
-      <!-- <div class="chart-row">
-        <div class="chart-row-item">2</div>
-        <ul class="chart-row-bars">
-          <li class="chart-li-two-a">T2</li>
-          <li class="chart-li-two-b">ST2</li>          
-        </ul>
-      </div> -->
-        <!-- <div class="chart-row">
-          <div class="chart-row-item">2</div>
-          <ul class="chart-row-bars">
-            <li class="chart-li-two-a">T2</li>
-            <li class="chart-li-two-b">ST2</li>          
-          </ul>
-        </div>
-        <div class="chart-row">
-          <div class="chart-row-item">3</div>
-          <ul class="chart-row-bars">
-            <li class="chart-li-three">item</li>
-          </ul>
-        </div>
-        <div class="chart-row">
-          <div class="chart-row-item">4</div>
-          <ul class="chart-row-bars">
-            <li class="chart-li-four">item</li>
-          </ul>
-        </div>
-        <div class="chart-row">
-          <div class="chart-row-item">5</div>
-          <ul class="chart-row-bars">
-            <li class="chart-li-five">ST1</li>
-          </ul>
-        </div>
-        <div class="chart-row">
-          <div class="chart-row-item">6</div>
-          <ul class="chart-row-bars">
-            <li class="chart-li-six">T3</li>
-          </ul>
-        </div>
-        <div class="chart-row">
-          <div class="chart-row-item">7</div>
-          <ul class="chart-row-bars">
-            <li class="chart-li-seven">ST3</li>
-          </ul>
-        </div>
-      </div> -->
-      <button type="button" class="btn btn-secondary btn-sm"><</button>
-      <button type="button" class="btn btn-secondary btn-sm">></button>
-      <form action="" method="post">
-       <div class="row">
-        <div class="col-md-8">
-            <div class="form-group form-check form-check-inline">
-              {%for task in task%}
-                <label class="form-check-label" for="defaultCheck1">
-                    <input class="form-check-input" type="checkbox" name="task" value="{{ task }}" id="{{ task }}" checked>
-                    {{ task }}
-                </label>
-                &nbsp;
-                {% endfor %}
-            </div>
-            </div>
-            </div>
-            <div class="row">
-              <div class="col-md-8">
-                <div class="form-group form-check form-check-inline">
-                  {% for sub in subtask1 %}
-                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1" checked>
+﻿<!doctype html>
+<html lang="en-au">
+    <head>
+        <title>Gantt Chart</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
+        <link rel="stylesheet" href="./static/css/style.css" />
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+        <link rel="stylesheet" href="http://taitems.github.com/UX-Lab/core/css/prettify.css" />
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+		<style type="text/css">
+			table th:first-child {
+				width: 150px;
+			}
+			.filter {
+			text-align: left;
+			}
+		</style>
+    </head>
+    <body>
+	<div class="contain">
+	<h2>
+		Gantt Chart
+		</h2>
+		<div class="container">
+			<div class="gantt"></div>
+		</div>
+		<div class="filter">
+			<input class="form-check-input" type="checkbox" name="task" value="t1" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                    {{ sub }}
+                    T1
                     </label>
                     &nbsp;
-                    {% endfor %}
-                    {% for sub in subtask2 %}
-                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1" checked>
+					<input class="form-check-input" type="checkbox" name="task" value="t2" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                    {{ sub }}
+                    T2
                     </label>
                     &nbsp;
-                    {% endfor %}
-                    {% for sub in subtask3 %}
-                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1" checked>
+					<input class="form-check-input" type="checkbox" name="task" value="t3" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                    {{ sub }}
+                    T3
                     </label>
                     &nbsp;
-                    {% endfor %}
-                    <br>  
-                    {% for sub in subtask4 %}
-                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1" checked>
+					<input class="form-check-input" type="checkbox" name="task" value="t4" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                    {{ sub }}
+                    T4
                     </label>
                     &nbsp;
-                    {% endfor %}
-                    {% for sub in subtask5 %}
-                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1" checked>
+					<input class="form-check-input" type="checkbox" name="task" value="t5" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                    {{ sub }}
+                    T5
                     </label>
                     &nbsp;
-                    {% endfor %}
-                    {% for sub in subtask6 %}
-                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1" checked>
+					<input class="form-check-input" type="checkbox" name="task" value="t6" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                    {{ sub }}
+                    T6
                     </label>
                     &nbsp;
-                    {% endfor %}
-                    </div>
-                    </div>
-              <div class="col-md-8">
-                <div class="form-group form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1">
+					<br><br>
+			<input class="form-check-input" type="checkbox" name="task" value="st1" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
                     ST1
                     </label>
@@ -356,162 +162,147 @@
                       ST21
                     </label>
                     &nbsp;
-                    </div>
-                    </div>
-                <div class="col-md-5">
-                  <div class="form-group form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="task" value="st22" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST22
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st23" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST23
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st24" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST24
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st25" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST25
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st26" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST26
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st27" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST27
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st29" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST28
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st30" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST30
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st31" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST31
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="st32" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      ST32
-                    </label>
-                    &nbsp;
-                    <input class="form-check-input" type="checkbox" name="task" value="none" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      None
-                    </label>
-                    &nbsp;
-                      </div>
-                    </div>
-                  </div>
-            
-        <button type="button" class="btn btn-secondary btn-sm" id="checkAll">Select all</button>
-        <button type="button" class="btn btn-secondary btn-sm" id="clearAll">Clear all</button>
-        <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2">Releases</label>
-                    <select name="releases" multiple class="form-control" id="exampleFormControlSelect2"> 
-                      {% for val in release %}
-                      <option value="{{val}}" selected>{{ val }}</option>
-                      {% endfor %}    
-                    </select>
-                  </div>
-            </div>
-            <div class="col-md-1">
-                OS
-                <div class="col-md-1">
-                    <label class="form-check-label" for="defaultCheck1">
-                    <input class="form-check-input" type="checkbox" name="os" value="windows" id="oswin"> Windows &nbsp;
-          
-                  </label>
-                  </div>
-                  <div class="col-md-1">
-                    <input class="form-check-input" type="checkbox" name="os" value="linux" id="oslinux">
-                    <label class="form-check-label" for="defaultCheck1">
-                      Linux
-                    </label>
-                  </div>
-            </div>
-            <div class="col-md-2">
-                <label for="exampleFormControlSelect1">NDA Scope</label>
-                  <select name="nda" class="form-control" id="exampleFormControlSelect1">
-                      <option value="all">All</option>
-                      <option value="nda">NDA</option>
-                       </select>
-            </div>
-            <div class="col-md-2">
-            <div class="form-group">
-                <label for="exampleFormControlSelect2">States</label>
-                <select name="states" multiple class="form-control" id="exampleFormControlSelect2">
-                    <option name="Draft">Draft</option>
-                    <option name="Submitted">Submitted</option>
-                    <option name="Approved">Approved</option>
-                    <option name="Sustaining">Sustaining</option>
-                    <option name="Closed">Closed</option>
-                <option name="Rejected">Rejected</option>
-                </select>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script>
-    var selectedOptionText = $('#year').find(":selected").text();//selected option text
-    // var selectedOptionVal = $('#year').find(":selected").val();
-    console.log(selectedOptionText);
-    $('#myForm').submit(function() {
-        alert("Getting...");
-    });
-    $("#checkAll").click(function(){
-        $('input:checkbox').prop('checked', true);
-        $('#oswin').prop('checked', false);
-        $('#oslinux').prop('checked', false);
-      });
+			<input class="form-check-input" type="checkbox" name="task" value="st22" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST22
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st23" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST23
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st24" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST24
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st25" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST25
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st26" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST26
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st27" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST27
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st29" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST28
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st30" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST30
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st31" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST31
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="st32" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  ST32
+			</label>
+			&nbsp;
+			<input class="form-check-input" type="checkbox" name="task" value="none" id="defaultCheck2">
+			<label class="form-check-label" for="defaultCheck1">
+			  None
+			</label>
+		  </div>
+		  <br>
+		  <button type="button" class="btn btn-secondary btn-sm" id="checkAll">Select all</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="clearAll">Clear all</button>	
+	<br><br>  
+	<label for="exampleFormControlSelect2">Release</label>
+	<select name="states" multiple class="form-control" id="exampleFormControlSelect2">
+		<option name="21.1">21.1</option>
+		<option name="21.2">21.2</option>
+		<option name="21.3">21.3</option>
+		<option name="21.5">21.5</option>
+	</select>
+	<label for="exampleFormControlSelect2">States</label>
+	<select name="states" multiple class="form-control" id="exampleFormControlSelect2">
+				<option name="Draft">Draft</option>
+				<option name="Submitted">Submitted</option>
+				<option name="Approved">Approved</option>
+				<option name="Sustaining">Sustaining</option>
+				<option name="Closed">Closed</option>
+			<option name="Rejected">Rejected</option>
+	</select>
+    <button type="submit" class="btn btn-primary">Submit</button>
+	</div>
 
-      $(":checkbox").change(function(){
-        if(this.checked){
-            $.ajax({
-                type: "POST",
-                url: '',
-                data: $(this).attr('id') +" : "+ $(this).val(), //--> send id of checked checkbox on other page
-                success: function(data) {
-                  console.log(data);  
-                  //todo
-
-                }
-              }); 
-            };
-          });
-          $(":checkbox").change(function(){
-            var ID = $(this).attr('id');
-            // hide
-            $('#task'+ID).hide();
-            if(this.checked){
-              // show
-              $('#task'+ID).show(); 
-            }
-          });
-      $("#clearAll").click(function(){
+	
+    </body>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script src="./static/js/jquery.fn.gantt.js"></script>
+	<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+	<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+	<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
+    <script>
+		$("#checkAll").click(function(){
+		$('input:checkbox').prop('checked', true);
+		$('#oswin').prop('checked', false);
+		$('#oslinux').prop('checked', false);
+		});
+		$("#clearAll").click(function(){
               $('input:checkbox').prop('checked', false);
-      });
-  </script>
-</body>
+      	});
+		$(function() {
+			"use strict";
+
+			$(".gantt").gantt({
+				source: [
+				{% for i in task %}
+				{
+					name: "{{ i[0][1] }}",
+					desc: "{{ i[0][2] }}",
+					values: [{
+						from: "/Date({{ i[1]}})/",
+						to: "/Date({{ i[2] }})/",
+						label: "{{ i[0][1] }},{{ i[0][2] }},{{ i[0][3] }}", 
+						customClass: "{% if i[0][1] == 'T1' %}ganttOrange{%elif i[0][1] == 'T2' %}ganttRed{%elif i[0][1] == 'T3' %}ganttGreen{%elif i[0][1] == 'T4' %}ganttBlue{% endif %}",
+					}]
+				},
+				{% endfor %}
+			],
+				navigate: "scroll",
+				scale: "weeks",
+				maxScale: "months",
+				minScale: "days",
+				itemsPerPage: 10,
+				onItemClick: function(data) {
+					alert("Item clicked - show some details");
+				},
+				onAddClick: function(dt, rowId) {
+					alert("Empty space clicked - add an item!");
+				},
+				onRender: function() {
+					if (window.console && typeof console.log === "function") {
+						console.log("chart rendered");
+					}
+				}
+			});
+
+			$(".gantt").popover({
+				selector: ".bar",
+				title: "I'm a popover",
+				content: "And I'm the content of said popover.",
+				trigger: "hover"
+			});
+			prettyPrint();
+		});
+
+    </script>
 </html>
