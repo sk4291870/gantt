@@ -49,6 +49,38 @@
 			<div class="gantt"></div>
 		</div>
 
+        <table id="" border="1" cellpadding="3" cellspacing="0">
+            <tr><th>Category</th><th>Product</th><th>Size</th><th>Price</th><th>Shipping</th></tr>
+            <tr><td>Category-1</td><td>Product-1</td><td>Big</td><td>102</td><td>Free</td></tr>
+            <tr><td>Category-1</td><td>Product-1</td><td>Big</td><td>132</td><td>Free</td></tr>
+            <tr><td>Category-1</td><td>Product-2</td><td>Big</td><td>130</td><td>Free</td></tr>
+            <tr><td>Category-1</td><td>Product-2</td><td>Small</td><td>100</td><td>Free</td></tr>
+            <tr><td>Category-2</td><td>Product-3</td><td>Big</td><td>130</td><td>Free</td></tr>
+            <tr><td>Category-2</td><td>Product-3</td><td>Big</td><td>100</td><td>Free</td></tr>
+            <tr><td>Category-2</td><td>Product-3</td><td>Small</td><td>100</td><td>10</td></tr>
+            <tr><td>Category-2</td><td>Product-4</td><td>Big</td><td>150</td><td>10</td></tr>
+            <tr><td>Category-3</td><td>Product-5</td><td>Big</td><td>150</td><td>10</td></tr>
+            <tr><td>Category-3</td><td>Product-5</td><td>Small</td><td>120</td><td>10</td></tr>
+            <tr><td>Category-3</td><td>Product-5</td><td>Big</td><td>120</td><td>Free</td></tr>
+            <tr><td>Category-4</td><td>Product-6</td><td>Big</td><td>120</td><td>10</td></tr>
+            <tr><td>Category-4</td><td>Product-6</td><td>Small</td><td>120</td><td>10</td></tr>
+            </table>
+            <table id="myTable" border="1" cellpadding="3" cellspacing="0">
+                <tr><th>Category</th><th>Product</th><th>Size</th><th>Price</th><th>Shipping</th></tr>
+                <tr><td>Category-1</td><td>Product-1</td><td>Big</td><td>102</td><td>Free</td></tr>
+                <tr><td>Category-1</td><td>Product-1</td><td>Big</td><td>132</td><td>Free</td></tr>
+                <tr><td>Category-1</td><td>Product-2</td><td>Big</td><td>130</td><td>Free</td></tr>
+                <tr><td>Category-1</td><td>Product-2</td><td>Small</td><td>100</td><td>Free</td></tr>
+                <tr><td>Category-2</td><td>Product-3</td><td>Big</td><td>130</td><td>Free</td></tr>
+                <tr><td>Category-2</td><td>Product-3</td><td>Big</td><td>100</td><td>Free</td></tr>
+                <tr><td>Category-2</td><td>Product-3</td><td>Small</td><td>100</td><td>10</td></tr>
+                <tr><td>Category-2</td><td>Product-4</td><td>Big</td><td>150</td><td>10</td></tr>
+                <tr><td>Category-3</td><td>Product-5</td><td>Big</td><td>150</td><td>10</td></tr>
+                <tr><td>Category-3</td><td>Product-5</td><td>Small</td><td>120</td><td>10</td></tr>
+                <tr><td>Category-3</td><td>Product-5</td><td>Big</td><td>120</td><td>Free</td></tr>
+                <tr><td>Category-4</td><td>Product-6</td><td>Big</td><td>120</td><td>10</td></tr>
+                <tr><td>Category-4</td><td>Product-6</td><td>Small</td><td>120</td><td>10</td></tr>
+                </table>
 		<div class="filter">
 			<h2>Filter's</h2>
 			<input class="form-check-input" type="checkbox" name="task" value="t1" id="t1">
@@ -284,7 +316,7 @@
 	</select>
     <button type="submit" id="subbutton" class="btn btn-primary">Submit</button>
 	</div>
-    </body>
+    
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script src="{{ url_for('static', filename = 'js/jquery.fn.gantt.js') }}"></script>
 	<!-- <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
@@ -310,18 +342,22 @@
 					{% endfor %}
 				]
 				},
-                {% for i in task%}
-				{
-					name: "{{ i }}",
-					desc: "ST2",
+				{% for i in task %}
+				{   
+                    {% if i[3] == i[0][1] %}
+                    name: "{{ i[3] }}",
+                    {% else %}
+                    name: "", 
+                    {% endif %}
+                    desc: "{{ i[0][2] }}",
 					values: [{
-						from: "/Date(1651625670000)/",
-						to: "/Date(165162700000)/",
-						label: "", 
-						customClass: "ganttOrange",
+						from: "/Date({{i[1]}})/",
+						to: "/Date({{i[2]}})/",
+						label: "{{ i[0][3] }}", 
+						customClass: "{% if i[0][1] == 'T1' %}ganttOrange{%elif i[0][1] == 'T2' %}ganttRed{%elif i[0][1] == 'T3' %}ganttGreen{%elif i[0][1] == 'T4' %}ganttBlue{%elif i[0][1] == 'T5' %}ganttOrange{%elif i[0][1] == 'T6' %}ganttRed{% endif %}",
 					}]
 				},
-                {% endfor %}
+				{% endfor %}
 			],
 				navigate: "scroll",
 				scale: "weeks",
@@ -412,5 +448,46 @@
 			});
 		});
 </script>
-	
+<script>
+    $(function() {  
+        //Created By: Brij Mohan
+        //Website: https://techbrij.com
+        function groupTable($rows, startIndex, total){
+        if (total === 0){
+        return;
+        }
+        var i , currentIndex = startIndex, count=1, lst=[];
+        var tds = $rows.find('td:eq('+ currentIndex +')');
+        var ctrl = $(tds[0]);
+        lst.push($rows[0]);
+        for (i=1;i<=tds.length;i++){
+        if (ctrl.text() ==  $(tds[i]).text()){
+        count++;
+        $(tds[i]).addClass('deleted');
+        lst.push($rows[i]);
+        }
+        else{
+        if (count>1){
+        ctrl.attr('rowspan',count);
+        groupTable($(lst),startIndex+1,total-1)
+        }
+        count=1;
+        lst = [];
+        ctrl=$(tds[i]);
+        lst.push($rows[i]);
+        }
+        }
+        }
+        groupTable($('#myTable tr:has(td)'),0,3);
+        $('#myTable .deleted').remove();
+        });
+
+        window.onload = function() {
+        for (let i = 0; i < 24; i++) {
+            console.log($('#rowheader'+i+' span').html());
+        }   
+    };
+        
+</script>
+</body>
 </html>

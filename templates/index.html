@@ -284,7 +284,7 @@
 	</select>
     <button type="submit" id="subbutton" class="btn btn-primary">Submit</button>
 	</div>
-    </body>
+    
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script src="{{ url_for('static', filename = 'js/jquery.fn.gantt.js') }}"></script>
 	<!-- <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
@@ -311,13 +311,17 @@
 				]
 				},
 				{% for i in task %}
-				{
-					name: "{{ i[0][1] }}",
-					desc: "{{ i[0][2] }}",
+				{   
+                    {% if i[3] == i[0][1] %}
+                    name: "{{ i[3] }}",
+                    {% else %}
+                    name: "", 
+                    {% endif %}
+                    desc: "{{ i[0][2] }}",
 					values: [{
 						from: "/Date({{i[1]}})/",
 						to: "/Date({{i[2]}})/",
-						label: "{{ i[0][1] }},{{ i[0][2] }},{{ i[0][3] }}", 
+						label: "{{ i[0][3] }}", 
 						customClass: "{% if i[0][1] == 'T1' %}ganttOrange{%elif i[0][1] == 'T2' %}ganttRed{%elif i[0][1] == 'T3' %}ganttGreen{%elif i[0][1] == 'T4' %}ganttBlue{%elif i[0][1] == 'T5' %}ganttOrange{%elif i[0][1] == 'T6' %}ganttRed{% endif %}",
 					}]
 				},
@@ -412,5 +416,5 @@
 			});
 		});
 </script>
-	
+</body>
 </html>

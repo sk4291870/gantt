@@ -3,7 +3,7 @@ import pandas as pd
 import json
 import pyodbc
 import datetime
-
+import operator
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
@@ -15,26 +15,6 @@ cursor = conn.cursor()
 
 @app.route('/',methods=['GET','POST'])
 def index():
-    if request.method == 'POST':
-        print(request.form)
-        table2 = cursor.execute("select * from Table2 where Taskname in ('T1','T2') and OS = 'Windows';")
-        list1=list()
-        sdatelist = list()
-        edatelist = list()
-        for row in table2:
-            list1.append(row)
-            # startdate
-            date_time_obj = datetime.datetime.strptime(row[4], '%Y-%m-%d')
-            sdate = datetime.datetime.timestamp(date_time_obj)
-            sdatelist.append(round(sdate * 1000 ))
-            #enddate
-            date_time_obj = datetime.datetime.strptime(row[5], '%Y-%m-%d')
-            edate = datetime.datetime.timestamp(date_time_obj)
-            edatelist.append(round(edate * 1000))
-        # df= pd.read_sql("select * from Table2", conn)
-        # print(list1)
-        return render_template('index.html',task=zip(list1,sdatelist,edatelist))
-   
     table1 = cursor.execute('SELECT * FROM Test_GanttChart.dbo.Table1')
     # print(table1)
     listtb1=list()
@@ -51,14 +31,24 @@ def index():
         edate = datetime.datetime.timestamp(date_time_obj)
         etb1datelist.append(round(edate * 1000))
      
-    table2 = cursor.execute('SELECT * FROM Test_GanttChart.dbo.Table2') 
+    table2 = cursor.execute('SELECT * FROM Table2 ORDER BY Taskname') 
+    taskgrp = list()
     list1=list()
     sdatelist = list()
     edatelist = list()
+    header_list = list()
+
+    header_now = ''
     for row in table2:
         list1.append(row)
         # startdate
-        # print(row[4])
+        # print(row[1])
+        if header_now == row[1]:
+            header_list.append('duplicate')
+        else:
+            header_now = row[1]
+            header_list.append(row[1])
+        taskgrp.append(row[1])
         date_time_obj = datetime.datetime.strptime(row[4], '%Y-%m-%d')
         sdate = datetime.datetime.timestamp(date_time_obj)
         sdatelist.append(round(sdate * 1000 ))
@@ -66,8 +56,8 @@ def index():
         date_time_obj = datetime.datetime.strptime(row[5], '%Y-%m-%d')
         edate = datetime.datetime.timestamp(date_time_obj)
         edatelist.append(round(edate * 1000))
-    # df= pd.read_sql("select * from Table2", conn)
-    return render_template('index.html',task=zip(list1,sdatelist,edatelist),graytb1= zip(listtb1,stb1datelist,etb1datelist))
+
+    return render_template('index.html',task=zip(list1,sdatelist,edatelist,header_list),graytb1= zip(listtb1,stb1datelist,etb1datelist))
 
 @app.route('/filter',methods=['GET','POST'])
 def filter():
@@ -87,16 +77,24 @@ def filter():
         edate = datetime.datetime.timestamp(date_time_obj)
         etb1datelist.append(round(edate * 1000))
      
-    table2 = cursor.execute('SELECT * FROM Test_GanttChart.dbo.Table2') 
+    table2 = cursor.execute('SELECT * FROM Table2 ORDER BY Taskname') 
     taskgrp = list()
     list1=list()
     sdatelist = list()
     edatelist = list()
+    header_list = list()
+
+    header_now = ''
     for row in table2:
         list1.append(row)
         # startdate
-        taskgrp.append(row[1])
         # print(row[1])
+        if header_now == row[1]:
+            header_list.append('duplicate')
+        else:
+            header_now = row[1]
+            header_list.append(row[1])
+        taskgrp.append(row[1])
         date_time_obj = datetime.datetime.strptime(row[4], '%Y-%m-%d')
         sdate = datetime.datetime.timestamp(date_time_obj)
         sdatelist.append(round(sdate * 1000 ))
@@ -104,9 +102,9 @@ def filter():
         date_time_obj = datetime.datetime.strptime(row[5], '%Y-%m-%d')
         edate = datetime.datetime.timestamp(date_time_obj)
         edatelist.append(round(edate * 1000))
-    # df= pd.read_sql("select * from Table2", conn)
-    # for i in zip(list1,))
-    return render_template('base.html',task=sorted(set(taskgrp)),graytb1= zip(listtb1,stb1datelist,etb1datelist))
+
+    return render_template('base.html',task=zip(list1,sdatelist,edatelist,header_list),graytb1= zip(listtb1,stb1datelist,etb1datelist))
 
 if __name__ == "__main__":
     app.run()
+
