@@ -35,7 +35,7 @@
 
 .fn-gantt .leftPanel {
     float: left;
-    width: px;
+    width: 225px;
     overflow: hidden;
     border-right: 1px solid #DDD;
     position: relative;
