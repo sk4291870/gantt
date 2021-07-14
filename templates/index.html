@@ -5,8 +5,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
 		<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" />
-        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
-        <link rel="stylesheet" href="http://taitems.github.com/UX-Lab/core/css/prettify.css" />
+        <!-- <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" /> -->
+        <!-- <link rel="stylesheet" href="http://taitems.github.com/UX-Lab/core/css/prettify.css" /> -->
 		<style type="text/css">
 			table th:first-child {
 				width: 150px;
@@ -21,11 +21,11 @@
 				font-size: 13px;
 				padding: 0 0 50px 0;
 			}
-			.contain {
+			/* .contain {
 				width: 800px;
 				margin: 0 auto;
-			}
-			h1 {
+			} */
+			/* h1 {
 				margin: 40px 0 20px 0;
 			}
 			h2 {
@@ -37,7 +37,7 @@
 			}
 			table th:first-child {
 				width: 150px;
-			}
+			} */
 		</style>
     </head>
     <body>
@@ -258,7 +258,9 @@
 		<option name="21.1">21.1</option>
 		<option name="21.2">21.2</option>
 		<option name="21.3">21.3</option>
+		<option name="21.3">21.4</option>
 		<option name="21.5">21.5</option>
+		<option name="21.5">21.6</option>
 	</select>
 	<input class="form-check-input" type="checkbox" name="win" value="win" id="win">
 			<label class="form-check-label" for="defaultCheck1">
@@ -285,15 +287,29 @@
     </body>
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script src="{{ url_for('static', filename = 'js/jquery.fn.gantt.js') }}"></script>
-	<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+	<!-- <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
 	<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
-	<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
+	<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script> -->
 	
     <script>
 		$(function() {
 			"use strict";
 			$(".gantt").gantt({
 				source: [
+				{
+					name: "T0",
+					desc: "Coming from table1",
+					values: [
+					{% for item in graytb1%}	
+					{
+						from: "/Date({{ item[1]}})/",
+						to: "/Date({{item[2]}})/",
+						label: "{{ item[0][2] }}", 
+						customClass: "{% if item[0][2] == 'item1'%}ganttBlue{%else%}ganttRed{%endif%}",
+					},
+					{% endfor %}
+				]
+				},
 				{% for i in task %}
 				{
 					name: "{{ i[0][1] }}",
@@ -324,13 +340,13 @@
 					}
 				}
 			});
-			$(".gantt").popover({
-				selector: ".bar",
-				title: "I'm a popover",
-				content: "And I'm the content of said popover.",
-				trigger: "hover"
-			});
-			prettyPrint();
+			// $(".gantt").popover({
+			// 	selector: ".bar",
+			// 	title: "I'm a popover",
+			// 	content: "And I'm the content of said popover.",
+			// 	trigger: "hover"
+			// });
+			// prettyPrint();
 		});
     </script>
 	<script>
@@ -361,13 +377,10 @@
 				});
 			console.log("================================");
 		});
+		// firts time when page load
 		$(document).ready(function(){
-			var s = $('.leftPanel');
-			var ss =new Array();
-			for(var i=0;i<s.length;i++){
-				ss.push(s[i].innerHTML);
-			}
-			console.log(skills);
+			$('input:checkbox').prop('checked', true);
+			$('#release').prop('checked', true);
 			});
 	$("#checkAll").click(function(){
 		$('input:checkbox').prop('checked', true);
@@ -376,7 +389,10 @@
 		});
 		$("#clearAll").click(function(){
               $('input:checkbox').prop('checked', false);
-      	});
+			  $('#release :selected').each(function(i, sel){ 
+    		   alert( $(sel).val() ); 
+			});
+		});
 </script>
 	
 </html>
