@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en-au">
     <head>
         <title>Gantt Chart</title>
@@ -310,18 +310,18 @@
 					{% endfor %}
 				]
 				},
-				{% for i in task %}
+                {% for i in task%}
 				{
-					name: "{{ i[0][1] }}",
-					desc: "{{ i[0][2] }}",
+					name: "{{ i }}",
+					desc: "ST2",
 					values: [{
-						from: "/Date({{i[1]}})/",
-						to: "/Date({{i[2]}})/",
-						label: "{{ i[0][1] }},{{ i[0][2] }},{{ i[0][3] }}", 
-						customClass: "{% if i[0][1] == 'T1' %}ganttOrange{%elif i[0][1] == 'T2' %}ganttRed{%elif i[0][1] == 'T3' %}ganttGreen{%elif i[0][1] == 'T4' %}ganttBlue{%elif i[0][1] == 'T5' %}ganttOrange{%elif i[0][1] == 'T6' %}ganttRed{% endif %}",
+						from: "/Date(1651625670000)/",
+						to: "/Date(165162700000)/",
+						label: "", 
+						customClass: "ganttOrange",
 					}]
 				},
-				{% endfor %}
+                {% endfor %}
 			],
 				navigate: "scroll",
 				scale: "weeks",
