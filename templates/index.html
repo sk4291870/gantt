@@ -41,12 +41,12 @@
 		</style>
     </head>
     <body>
-	<h2>
-		Gantt Chart
-		</h2>
-		<div class="container">
-			<div class="gantt"></div>
-		</div>
+		<h2>
+			Gantt Chart
+			</h2>
+			<div class="container">
+				<div class="gantt"></div>
+			</div>
 	<div class="contain">
 		<div class="filter">
 			<h2>Filter's</h2>
@@ -266,17 +266,15 @@
 			<option name="21.5" selected>21.6</option>
 			<option name="21.5" selected>21.5</option>
 		</select>
-		<input class="form-check-input" type="checkbox" name="os" value="win" id="win">
+			<input class="form-check-input" type="checkbox" name="os" value="win" id="win">
 				<label class="form-check-label" for="defaultCheck1">
 				  Windows
 				</label>
-				&nbsp;
+				
 				<input class="form-check-input" type="checkbox" name="os" value="linux" id="linx">
 				<label class="form-check-label" for="defaultCheck1">
 				  Linux
 				</label>
-				&nbsp;
-	
 		<label for="exampleFormControlSelect2">States : </label>
 		<select name="states" multiple class="form-control" id="states">
 					<option name="Draft" selected>Draft</option>
@@ -354,7 +352,8 @@
 			// });
 			// prettyPrint();
 		});
-    
+    </script>
+	<script>
 	// firts time when page load
 	$(document).ready(function(){
 	$('input:checkbox').prop('checked', true);
@@ -366,53 +365,69 @@
 		// console.log(checkbox.value + ' ');
 		checkval.push(checkbox.value)
 	}
-
-
-	// getting all the task checkboxes id's
-	$('#subbutton').click(function(event){
-		event.preventDefault()
-		var taskarr = [];
-		$('#tasks input:checked').each(function() {
-			taskarr.push($(this).attr('id'));
-		});
-		// initialize the form object
-		var form = document.querySelector('form');
-		var formData = new FormData(form);
-        
-		// taskarr.each(function(key,value) {
-		// 	// $().prop('checked', false);
-		// });
-		
-
-		$.ajax({
-			
-			type: 'POST',
-			url: "",
-			processData: false, // important
-			contentType: false, // important
-			data: formData,
-			dataType: 'html',
-			success: function(data){
-				$('body').html(data);
-		// 		taskarr.each(function() {
-		// 	taskarr.push($(this).attr('id'));
-		// });
-				
-			}
-			});
-	});
 });
 $("#checkAll").click(function(){
 	$('input:checkbox').prop('checked', true);
-	$('#oswin').prop('checked', false);
-	$('#oslinux').prop('checked', false);
+	if($('#oswin').is("checked")){
+		$('#oswin').prop('checked', false);
+	}
+	// $('#oswin').prop('checked', false);
+	// $('#oslinux').prop('checked', false);
 });
 $("#clearAll").click(function(){
 		$('input:checkbox').prop('checked', false);
 		$('#release :selected').each(function(i, sel){ 
-		alert( $(sel).val() ); 
+		// alert( $(sel).val() ); 
 	});
 })
+
+
+// getting all the task checkboxes id's
+$('#subbutton').click(function(event){
+	event.preventDefault()
+	var tcheckedarr = [];
+	var tuncheckdarr = [];
+	$('#tasks input').each(function() {
+		var taskId = $(this).attr('id')
+		if  ($('#'+taskId).is(':checked')){
+			tcheckedarr.push($(this).attr('id'));
+		}
+		else{
+			tuncheckdarr.push($(this).attr('id'));
+		}
+	});
+	var scheckedarr = [];
+	var suncheckdarr = []; 
+	$('#subtasks input').each(function() {
+		var subtaskId = $(this).attr('id')
+		if  ($('#'+subtaskId).is(':checked')){
+			scheckedarr.push($(this).attr('id'));
+		}
+		else{
+			suncheckdarr.push($(this).attr('id'));
+		}
+	});
+	// initialize the form object
+	var form = document.querySelector('form');
+	var formData = new FormData(form);
+	$.ajax({
+		type: 'POST',
+		url: "",
+		processData: false, // important
+		contentType: false, // important
+		data: formData,
+		dataType: 'html',
+		success: function(data){
+			$('body').html(data);
+			$.each( tuncheckdarr, function( index, value ){
+			$('#'+value).prop('checked', false);	
+		});
+		$.each( suncheckdarr, function( index, value ){
+			$('#'+value).prop('checked', false);	
+		});
+		}
+		});
+		});	
 </script>
 </body>
 </html>
