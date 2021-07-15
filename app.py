@@ -85,7 +85,15 @@ def index():
     listtb1=list()
     stb1datelist = list()
     etb1datelist = list()
+    header_list1 = list()
+
+    header_now_t1 = ''
     for data in table1:
+        if header_now_t1 == data[1]:
+            header_list1.append('duplicate')
+        else:
+            header_now_t1 = data[1]
+            header_list1.append(data[1])
         listtb1.append(data)
         # startdate
         date_time_obj = datetime.datetime.strptime(data[3], '%Y-%m-%d')
@@ -106,8 +114,6 @@ def index():
     header_now = ''
     for row in table2:
         list1.append(row)
-        # startdate
-        # print(row[1])
         if header_now == row[1]:
             header_list.append('duplicate')
         else:
@@ -122,7 +128,7 @@ def index():
         edate = datetime.datetime.timestamp(date_time_obj)
         edatelist.append(round(edate * 1000))
 
-    return render_template('index.html',task=zip(list1,sdatelist,edatelist,header_list),graytb1= zip(listtb1,stb1datelist,etb1datelist))
+    return render_template('index.html',task=zip(list1,sdatelist,edatelist,header_list),graytb1= zip(listtb1,stb1datelist,etb1datelist,header_list1))
 
 if __name__ == "__main__":
     app.run()

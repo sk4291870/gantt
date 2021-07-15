@@ -31,4 +31,11 @@ Status : Progress
     ```
         flask run
     ```
-  5. Now, app is serving over 127.0.0.1:5000   
+  5. Now, app is serving over 127.0.0.1:5000 
+
+# For Filter
+ 
+ 1. For task filter just uncheck the selected Item and the hit the submit button then the sorted data will pe appear.
+  
+ 2. For Subtask unchcek the selected Item and hit submit button.  
+

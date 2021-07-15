@@ -296,20 +296,26 @@
 			"use strict";
 			$(".gantt").gantt({
 				source: [
-				{
+				{% for item in graytb1%}	
+				{   
+					{% if item[3] == item[0][1] %}
 					name: "T0",
 					desc: "Coming from table1",
+                    {% else %}
+                    name: "", 
+					desc: "",
+                    {% endif %}
 					values: [
-					{% for item in graytb1%}	
 					{
 						from: "/Date({{ item[1]}})/",
 						to: "/Date({{item[2]}})/",
 						label: "{{ item[0][2] }}", 
 						customClass: "{% if item[0][2] == 'item1'%}ganttBlue{%else%}ganttRed{%endif%}",
 					},
-					{% endfor %}
 				]
 				},
+				{% endfor %}
+
 				{% for i in task %}
 				{   
                     {% if i[3] == i[0][1] %}
@@ -331,7 +337,7 @@
 				scale: "weeks",
 				maxScale: "months",
 				minScale: "days",
-				itemsPerPage: 10,
+				itemsPerPage: 15,
 				onItemClick: function(data) {
 					alert("Item clicked - show some details");
 				},
@@ -427,7 +433,12 @@ $('#subbutton').click(function(event){
 		});
 		}
 		});
-		});	
+		});
+		// 	{% for sub in task %}
+		// console.log({{ sub[0][2] }});
+		// {% endfor %}
+
+		
 </script>
 </body>
 </html>
